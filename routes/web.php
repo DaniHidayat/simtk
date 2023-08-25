@@ -87,6 +87,6 @@ Route::post('/dashboard/laporansensor/export_pdf', [DashboardLaporanController::
 Route::get('/dashboard/laporan', [DashboardLaporanController::class, 'index'])
 ->middleware('auth');
 
-Route::get('/push-notificaiton', [WebNotificationController::class, 'index'])->name('push-notificaiton');
-Route::post('/store-token', [WebNotificationController::class, 'storeToken'])->name('store.token');
-Route::post('/send-web-notification', [WebNotificationController::class, 'sendWebNotification'])->name('send.web-notification');
+
+Route::post('/save-token', [App\Http\Controllers\WebNotificationController::class, 'saveToken'])->name('save-token');
+Route::post('/send-notification', [App\Http\Controllers\WebNotificationController::class, 'sendNotification'])->name('send.notification');

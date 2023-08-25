@@ -23,22 +23,23 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-					<button onclick="startFCM()"
-					class="btn btn-danger btn-flat">Allow notification
-			</button>
-			<form action="{{ route('send.web-notification') }}" method="POST">
-				@csrf
-				<div class="form-group">
-						<label>Message Title</label>
-						<input type="text" class="form-control" name="title">
-				</div>
-				<div class="form-group">
-						<label>Message Body</label>
-						<textarea class="form-control" name="body"></textarea>
-				</div>
-				<button type="submit" class="btn btn-success btn-block">Send Notification</button>
-		</form>
-            <div class="row">
+					<button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger btn-xs btn-flat">Allow for Notification</button>
+
+					<form action="{{ route('send.notification') }}" method="POST">
+						@csrf
+						<div class="form-group">
+								<label>Title</label>
+								<input type="text" class="form-control" required  name="title">
+						</div>
+						<div class="form-group">
+								<label>Body</label>
+								<textarea class="form-control" name="body" required></textarea>
+							</div>
+							<br>
+						<button type="submit" class="btn btn-primary">Send Notification</button>
+				</form>
+
+					<div class="row">
                <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
