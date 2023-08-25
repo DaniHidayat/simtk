@@ -69,7 +69,7 @@ class DashboardSensorController extends Controller
 			'sensor_waterpressure' => $sensor_waterpressure,
 			// Kolom lainnya jika ada
 	]);
-		$this->whatsappNotification();
+		// $this->whatsappNotification();
 
     return response()->json(['message' => 'Sensor data stored successfully']);
 }
