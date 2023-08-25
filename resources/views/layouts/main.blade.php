@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="obHUBx-zrEj7Jd6xBrd6JszeLtZXEVd7oQV5G79JBxo" />
     <link rel="shortcut icon" href="{{ asset('/assets/templateskm/assets/form/img/logoKab.png') }}">
 
@@ -157,6 +158,58 @@
 
         //Initialize Select2 Elements
         $('.select2').select2()
+    });
+</script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script>
+    var firebaseConfig = {
+			apiKey: "AIzaSyC6MKEA1yrQNG-sTDtCnu_ZF5PJG9phRjA",
+			authDomain: "irrigationsystem-3ddd2.firebaseapp.com",
+			projectId: "irrigationsystem-3ddd2",
+			storageBucket: "irrigationsystem-3ddd2.appspot.com",
+			messagingSenderId: "102340191743",
+			appId: "1:102340191743:web:f1bb30796cdee0e1fc73ca",
+			measurementId: "G-GQF8EN8YYB"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+    function startFCM() {
+        messaging
+            .requestPermission()
+            .then(function () {
+                return messaging.getToken()
+            })
+            .then(function (response) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '{{ route("store.token") }}',
+                    type: 'POST',
+                    data: {
+                        token: response
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert('Token stored.');
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                });
+            }).catch(function (error) {
+                alert(error);
+            });
+    }
+    messaging.onMessage(function (payload) {
+        const title = payload.notification.title;
+        const options = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(title, options);
     });
 </script>
 @stack('scripts')

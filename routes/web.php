@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardSensorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\WebNotificationController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -85,3 +86,7 @@ Route::post('/dashboard/laporansensor/export_excel', [DashboardLaporanController
 Route::post('/dashboard/laporansensor/export_pdf', [DashboardLaporanController::class, 'export_pdf']);
 Route::get('/dashboard/laporan', [DashboardLaporanController::class, 'index'])
 ->middleware('auth');
+
+Route::get('/push-notificaiton', [WebNotificationController::class, 'index'])->name('push-notificaiton');
+Route::post('/store-token', [WebNotificationController::class, 'storeToken'])->name('store.token');
+Route::post('/send-web-notification', [WebNotificationController::class, 'sendWebNotification'])->name('send.web-notification');

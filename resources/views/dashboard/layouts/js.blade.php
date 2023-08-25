@@ -88,5 +88,57 @@
         $('.select2').select2()
     });
 </script>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script>
+    var firebaseConfig = {
+			apiKey: "AIzaSyDf6nxPgyqzZ3agjb8ODaK8ptG-A89v24c",
+			authDomain: "notifikasi-c4a8c.firebaseapp.com",
+			projectId: "notifikasi-c4a8c",
+			storageBucket: "notifikasi-c4a8c.appspot.com",
+			messagingSenderId: "663941759997",
+			appId: "1:663941759997:web:7d08dbf23dd048d3418f94"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+    function startFCM() {
+        messaging
+            .requestPermission()
+            .then(function () {
+                return messaging.getToken()
+            })
+            .then(function (response) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '{{ route("store.token") }}',
+                    type: 'POST',
+                    data: {
+                        token: response
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert('Token stored.');
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                });
+            }).catch(function (error) {
+                alert(error);
+            });
+    }
+    messaging.onMessage(function (payload) {
+        const title = payload.notification.title;
+        const options = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(title, options);
+    });
+</script>
 </body>
 </html>
