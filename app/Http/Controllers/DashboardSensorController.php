@@ -70,7 +70,7 @@ class DashboardSensorController extends Controller
 			// Kolom lainnya jika ada
 	]);
 		// $this->whatsappNotification();
-		$response = $webNotificationController->sendNotification('title','body');
+		$response = $webNotificationController->sendNotification('Kering','Harus di siram');
 
     return response()->json(['message' => 'Sensor data stored successfully']);
 }
