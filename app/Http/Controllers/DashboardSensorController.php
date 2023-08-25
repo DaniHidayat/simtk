@@ -10,7 +10,7 @@ use App\Models\Waterpump;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Twilio\Rest\Client;
-
+use App\Http\Controllers\WebNotificationController;
 class DashboardSensorController extends Controller
 {
 
@@ -57,7 +57,7 @@ class DashboardSensorController extends Controller
 
         return $twilio->messages->create("whatsapp:+6285721134897",["from" => "whatsapp:$wa_from", "body" => $body]);
     }
-	public function simpanSensor($id, $nilaiph, $nilaimoisture,$sensor_flowrate,$sensor_waterpressure)
+	public function simpanSensor($id, $nilaiph, $nilaimoisture,$sensor_flowrate,$sensor_waterpressure,WebNotificationController $webNotificationController)
 	{
 
 	// Gunakan Query Builder untuk menyimpan data ke database
@@ -70,6 +70,7 @@ class DashboardSensorController extends Controller
 			// Kolom lainnya jika ada
 	]);
 		// $this->whatsappNotification();
+		$response = $webNotificationController->sendNotification('title','body');
 
     return response()->json(['message' => 'Sensor data stored successfully']);
 }

@@ -42,7 +42,7 @@
          *
          * @return response()
          */
-        public function sendNotification(Request $request)
+        public function sendNotification($title,$body)
         {
             //firebaseToken berisi seluruh user yang memiliki device_token. jadi notifnya akan dikirmkan ke semua user
             //jika kalian ingin mengirim notif ke user tertentu batasi query dibawah ini, bisa berdasarkan id atau kondisi tertentu
@@ -54,8 +54,8 @@
             $data = [
                 "registration_ids" => $firebaseToken,
                 "notification" => [
-                    "title" => $request->title,
-                    "body" => $request->body,
+                    "title" => $title,
+                    "body" => $body,
                     "icon" => 'https://cdn.pixabay.com/photo/2016/05/24/16/48/mountains-1412683_960_720.png',
                     "content_available" => true,
                     "priority" => "high",
