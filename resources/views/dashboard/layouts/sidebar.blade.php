@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="/dashboard" class="brand-link">
         <img src="{{ asset('/assets/templateskm/assets/form/img/logoKab.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-5" style="opacity: .8">
-        <span class="brand-text font-weight-light">Buku Tamu</span>
+        <span class="brand-text font-weight-light">Irrigation</span>
     </a>
 
     <!-- Sidebar -->

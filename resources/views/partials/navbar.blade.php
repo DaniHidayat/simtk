@@ -13,7 +13,7 @@
                         <a class="nav-link {{ ($active === 'Home')? 'active' : '' }}"  href="/">Home</a>
                     </li> -->
                     <li class="nav-item ">
-                        <a class="nav-link fw-bold {{ ($active === 'Buku Tamu')? 'active' : '' }}" href="/">BUKU TAMU</a>
+                        <a class="nav-link fw-bold {{ ($active === 'Buku Tamu')? 'active' : '' }}" href="/">Irrigation </a>
                     </li>
 
 
