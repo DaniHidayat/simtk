@@ -73,12 +73,12 @@ class DashboardSensorController extends Controller
 		$status = "";
 
 		if ($nilaiph < 6) {
-			$status = "Asam";
-			$body = "Menambahkan Bubuk Kapur (bubuk, butiran, pelet, dan kristal)";
+			$status = "PH Asam";
+			$body = "Tambahkan Bubuk Kapur (bubuk, butiran, pelet, dan kristal) untuk menurunkan pH";
 			$webNotificationController->sendNotification($status, $body);
 	} else if ($nilaiph >= 6.5 && $nilaiph <= 7.5) {
-			$status = "Basa";
-			$body = "Memberikan bubuk belerang atau sulfur";
+			$status = "PH Basa";
+			$body = "Berikan bubuk belerang atau sulfur untuk menaikan kadar pH";
 			$webNotificationController->sendNotification($status, $body);
 	} else {
 			$status = "Netral";
