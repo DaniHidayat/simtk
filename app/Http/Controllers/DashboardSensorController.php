@@ -70,7 +70,22 @@ class DashboardSensorController extends Controller
 			// Kolom lainnya jika ada
 	]);
 		// $this->whatsappNotification();
-		$response = $webNotificationController->sendNotification('Kering','Harus di siram');
+		$status = "";
+
+		if ($nilaiph < 6) {
+			$status = "Asam";
+			$body = "Menambahkan Bubuk Kapur (bubuk, butiran, pelet, dan kristal)";
+			$webNotificationController->sendNotification($status, $body);
+	} else if ($nilaiph >= 6.5 && $nilaiph <= 7.5) {
+			$status = "Basa";
+			$body = "Memberikan bubuk belerang atau sulfur";
+			$webNotificationController->sendNotification($status, $body);
+	} else {
+			$status = "Netral";
+			$body = "Harus disiram";
+			$webNotificationController->sendNotification($status, $body);
+	}
+
 
     return response()->json(['message' => 'Sensor data stored successfully']);
 }
