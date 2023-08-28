@@ -82,8 +82,7 @@ class DashboardSensorController extends Controller
 			$webNotificationController->sendNotification($status, $body);
 	} else {
 			$status = "Netral";
-			$body = "Harus disiram";
-			$webNotificationController->sendNotification($status, $body);
+
 	}
 
 
