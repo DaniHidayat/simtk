@@ -21,7 +21,7 @@ class DashboardController extends Controller
 $startDate = date('Y-m-d', strtotime('this week Monday'));
 $endDate = date('Y-m-d', strtotime('this week Sunday'));
 
-$chartData = Device::selectRaw('DATE(created_at) as date, SUM(sensor_ph) as sum_ph')
+$chartData = Device::selectRaw('DATE(created_at) as date, avg(sensor_ph) as sum_ph')
     ->whereBetween('created_at', [$startDate, $endDate])
     ->groupBy('date')
     ->orderBy('date')
@@ -55,7 +55,7 @@ foreach ($daysOfWeek as $day) {
 $startDateKemarin = date('Y-m-d', strtotime('last week Monday'));
 $endDateKemarin = date('Y-m-d', strtotime('last week Sunday'));
 
-$chartDataKemarin = Device::selectRaw('DATE(created_at) as date, SUM(sensor_ph) as sum_ph')
+$chartDataKemarin = Device::selectRaw('DATE(created_at) as date, avg(sensor_ph) as sum_ph')
     ->whereBetween('created_at', [$startDateKemarin, $endDateKemarin])
     ->groupBy('date')
     ->orderBy('date')
@@ -90,7 +90,7 @@ foreach ($daysOfWeek as $day) {
 $startDateM = date('Y-m-d', strtotime('this week Monday'));
 $endDateM = date('Y-m-d', strtotime('this week Sunday'));
 
-$chartDataM = Device::selectRaw('DATE(created_at) as date, SUM(sensor_moisture) as sum_moisture')
+$chartDataM = Device::selectRaw('DATE(created_at) as date, avg(sensor_moisture) as sum_moisture')
     ->whereBetween('created_at', [$startDateM, $endDateM])
     ->groupBy('date')
     ->orderBy('date')
@@ -124,7 +124,7 @@ foreach ($daysOfWeekM as $day) {
 $startDateKemarinM = date('Y-m-d', strtotime('last week Monday'));
 $endDateKemarinM = date('Y-m-d', strtotime('last week Sunday'));
 
-$chartDataKemarinM = Device::selectRaw('DATE(created_at) as date, SUM(sensor_moisture) as sum_moisture')
+$chartDataKemarinM = Device::selectRaw('DATE(created_at) as date, avg(sensor_moisture) as sum_moisture')
     ->whereBetween('created_at', [$startDateKemarinM, $endDateKemarinM])
     ->groupBy('date')
     ->orderBy('date')
