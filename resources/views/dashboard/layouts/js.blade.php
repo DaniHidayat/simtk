@@ -89,8 +89,8 @@
     });
 </script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script>
+
+<script>
 
         var firebaseConfig = {
 					apiKey: "AIzaSyDf6nxPgyqzZ3agjb8ODaK8ptG-A89v24c",
@@ -105,6 +105,7 @@
         const messaging = firebase.messaging();
 
         function initFirebaseMessagingRegistration() {
+
                 messaging
                 .requestPermission()
                 .then(function () {
@@ -135,6 +136,7 @@
                     });
 
                 }).catch(function (err) {
+
                     console.log('User Chat Token Error'+ err);
                 });
          }
