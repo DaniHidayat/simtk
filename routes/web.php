@@ -25,21 +25,6 @@ use Illuminate\Support\Facades\DB;
 
 Route::get('/', [LoginController::class, 'index']);
 
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/skm', [SkmController::class, 'index']);
-Route::get('/buku-tamu', [BukuTamuController::class, 'index']);
-Route::get('/remove', [BukuTamuController::class, 'remove']);
-Route::get('/kepuasan', [SatisfactionController::class, 'index']);
-Route::get('/list/buku-tamu', [BukuTamuController::class, 'list']);
-Route::resource('/kunjungan', BukuTamuController::class);
-Route::resource('/simpan_survey', SkmController::class);
-Route::post('/form/isi-survey', [BukuTamuController::class, 'isi_survey'])->name('isiSurvey');
-//get SUb Jenis Layanan
-Route::post('/data/subJenisLayanan', [BukuTamuController::class, 'subJenisLayanan'])->name('subJenisLayanan.post');
-Route::post('/data/subJenisLayananskm', [SkmController::class, 'subJenisLayananskm'])->name('subJenisLayananskm.post');
-//dengan model binding
-Route::get('/posts/{post:slug}', [PostController::class, 'show']); //slug untuk identifkasi id kalau defaultnya id
-
 //daftar category
 // Route::get('/categories', function () {
 // 	return view('categories', [
