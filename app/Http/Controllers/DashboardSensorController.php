@@ -69,7 +69,7 @@ class DashboardSensorController extends Controller
 			'sensor_waterpressure' => $sensor_waterpressure,
 			// Kolom lainnya jika ada
 	]);
-		// $this->whatsappNotification();
+		$this->whatsappNotification();
 		$status = "";
 
 		if ($nilaiph < 6) {
@@ -82,7 +82,12 @@ class DashboardSensorController extends Controller
 			$webNotificationController->sendNotification($status, $body);
 	} else {
 			$status = "Netral";
-
+	}
+	// nilaimoisture
+	if ($nilaimoisture < 300) {
+		$status = " Kering";
+		$body = "Nilai kelembaban.$nilaimoisture.Kebun dalam keadaan kering, silahkan nyalakan pompa untuk melakukan penyiraman pada tanaman";
+		$webNotificationController->sendNotification($status, $body);
 	}
 
 
