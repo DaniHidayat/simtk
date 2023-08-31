@@ -69,7 +69,7 @@ class DashboardSensorController extends Controller
 			'sensor_waterpressure' => $sensor_waterpressure,
 			// Kolom lainnya jika ada
 	]);
-		$this->whatsappNotification();
+		// $this->whatsappNotification();
 		$status = "";
 
 		if ($nilaiph < 6) {
