@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Twilio\Rest\Client;
 use App\Http\Controllers\WebNotificationController;
+
 class DashboardSensorController extends Controller
 {
 
@@ -41,58 +42,61 @@ class DashboardSensorController extends Controller
 
 		return view('dashboard.sensor.index', [
 
-			'Device' => Device::orderBy('id','DESC')->get(),
+			'Device' => Device::orderBy('id', 'DESC')->get(),
 		]);
 	}
 	private function whatsappNotification()
-    {
-        $sid    = "AC6e06c85e3c17a76b746fd76339cf1a6a";
-        $token  = "73128d17121ec6fb1a0d4fba49fec1be";
-        $wa_from= "+14155238886";
+	{
+		$sid    = "AC6e06c85e3c17a76b746fd76339cf1a6a";
+		$token  = "73128d17121ec6fb1a0d4fba49fec1be";
+		$wa_from = "+14155238886";
 
-        $twilio = new Client($sid, $token);
+		$twilio = new Client($sid, $token);
 
 
-        $body = "PH TERLALU RENDAH HARAP CEK LADANG ANDA";
+		$body = "PH TERLALU RENDAH HARAP CEK LADANG ANDA";
 
-        return $twilio->messages->create("whatsapp:+6285721134897",["from" => "whatsapp:$wa_from", "body" => $body]);
-    }
-	public function simpanSensor($id, $nilaiph, $nilaimoisture,$sensor_flowrate,$sensor_waterpressure,WebNotificationController $webNotificationController)
+		return $twilio->messages->create("whatsapp:+6285721134897", ["from" => "whatsapp:$wa_from", "body" => $body]);
+	}
+	public function simpanSensor($id, $nilaiph, $nilaimoisture, $sensor_flowrate, $sensor_waterpressure, WebNotificationController $webNotificationController)
 	{
 
-	// Gunakan Query Builder untuk menyimpan data ke database
-	DB::table('devices')->insert([
+
+		// Gunakan Query Builder untuk menyimpan data ke database
+		DB::table('devices')->insert([
 			'device_id' => $id,
 			'sensor_ph' => $nilaiph,
 			'sensor_moisture' => $nilaimoisture,
 			'sensor_flowrate' => $sensor_flowrate,
 			'sensor_waterpressure' => $sensor_waterpressure,
 			// Kolom lainnya jika ada
-	]);
+		]);
 		// $this->whatsappNotification();
 		$status = "";
 
-	// 	if ($nilaiph < 6) {
-	// 		$status = "PH Asam";
-	// 		$body = "Tambahkan Bubuk Kapur (bubuk, butiran, pelet, dan kristal) untuk menurunkan pH";
-	// 		$webNotificationController->sendNotification($status, $body);
-	// } else if ($nilaiph >= 6.5 && $nilaiph <= 7.5) {
-	// 		$status = "PH Basa";
-	// 		$body = "Berikan bubuk belerang atau sulfur untuk menaikan kadar pH";
-	// 		$webNotificationController->sendNotification($status, $body);
-	// } else {
-	// 		$status = "Netral";
-	// }
-	// nilaimoisture
-	if ($nilaimoisture < 300) {
-		$status = " Kering";
-		$body = "Nilai kelembaban.$nilaimoisture.Kebun dalam keadaan kering, silahkan nyalakan pompa untuk melakukan penyiraman pada tanaman";
-		$webNotificationController->sendNotification($status, $body);
+		if ($nilaiph < 6) {
+			$status = "PH Asam";
+			$body = "Tambahkan Bubuk Kapur (bubuk, butiran, pelet, dan kristal) untuk menurunkan pH";
+			$webNotificationController->sendNotification($status, $body);
+		} else if ($nilaiph >= 6.5 && $nilaiph <= 7.5) {
+			$status = "PH Basa";
+			$body = "Berikan bubuk belerang atau sulfur untuk menaikan kadar pH";
+			$webNotificationController->sendNotification($status, $body);
+		} else {
+			$status = "Netral";
+		}
+		// nilaimoisture
+		if ($nilaimoisture < 300) {
+
+			$status = " Kering";
+			$body = "Nilai kelembaban $nilaimoisture Kebun dalam keadaan kering, silahkan nyalakan pompa untuk melakukan penyiraman pada tanaman";
+			$webNotificationController->sendNotification($status, $body);
+		}
+
+
+
+		return response()->json(['message' => 'Sensor data stored successfully']);
 	}
-
-
-    return response()->json(['message' => 'Sensor data stored successfully']);
-}
 	public function export_excel(Request $request)
 	{
 
@@ -143,9 +147,9 @@ class DashboardSensorController extends Controller
 
 		// Perform any necessary actions with the data here (e.g., update database
 		// Return a response (if needed)
-		if ( $item->status === 'true') {
-		return "ON";
-		}else{
+		if ($item->status === 'true') {
+			return "ON";
+		} else {
 			return "OFF";
 		}
 	}
