@@ -72,17 +72,17 @@ class DashboardSensorController extends Controller
 		// $this->whatsappNotification();
 		$status = "";
 
-		if ($nilaiph < 6) {
-			$status = "PH Asam";
-			$body = "Tambahkan Bubuk Kapur (bubuk, butiran, pelet, dan kristal) untuk menurunkan pH";
-			$webNotificationController->sendNotification($status, $body);
-	} else if ($nilaiph >= 6.5 && $nilaiph <= 7.5) {
-			$status = "PH Basa";
-			$body = "Berikan bubuk belerang atau sulfur untuk menaikan kadar pH";
-			$webNotificationController->sendNotification($status, $body);
-	} else {
-			$status = "Netral";
-	}
+	// 	if ($nilaiph < 6) {
+	// 		$status = "PH Asam";
+	// 		$body = "Tambahkan Bubuk Kapur (bubuk, butiran, pelet, dan kristal) untuk menurunkan pH";
+	// 		$webNotificationController->sendNotification($status, $body);
+	// } else if ($nilaiph >= 6.5 && $nilaiph <= 7.5) {
+	// 		$status = "PH Basa";
+	// 		$body = "Berikan bubuk belerang atau sulfur untuk menaikan kadar pH";
+	// 		$webNotificationController->sendNotification($status, $body);
+	// } else {
+	// 		$status = "Netral";
+	// }
 	// nilaimoisture
 	if ($nilaimoisture < 300) {
 		$status = " Kering";
