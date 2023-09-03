@@ -122,15 +122,16 @@
                     // Handle the response from the controller (if needed)
 											var isChecked = response.data;
 
+
 											var toggleElement = document.getElementById('chkToggle1');
 											var statusTextElement = document.getElementById('statusText');
 												if (isChecked == "true") {
-													statusTextElement.textContent = 'Pompa Hidup ';
-													$(toggleElement).bootstrapToggle('on');
+													statusTextElement.textContent = 'Pompa Mati';
+													$(toggleElement).bootstrapToggle('off');
 
 											} else {
-													statusTextElement.textContent = 'Pompa Mati ';
-													$(toggleElement).bootstrapToggle('off');
+													statusTextElement.textContent = 'Pompa Hidup';
+													$(toggleElement).bootstrapToggle('on');
 
 											}
 									},
@@ -144,16 +145,16 @@
 							var isChecked = this.checked;
             var statusTextElement = document.getElementById('statusText');
 							if (isChecked) {
-                statusTextElement.textContent = 'Pompa Hidup ';
-            } else {
                 statusTextElement.textContent = 'Pompa Mati ';
+            } else {
+                statusTextElement.textContent = 'Pompa Hidup ';
             }
 						//updatestatus
 						$.ajax({
                 url: "{{ route('updateStatus') }}",
                 method: "POST",
                 data: {
-                    isChecked: isChecked
+                    isChecked: !isChecked
                 },
 								headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -161,9 +162,9 @@
                 success: function(response) {
                     // Handle the response from the controller (if needed)
                    if(response.data == "true"){
-										toastr.success('Pompa Hidup!', 'Success');
-									 }else{
 										toastr.success('Pompa Mati!', 'Success');
+									 }else{
+										toastr.success('Pompa Hidup!', 'Success');
 									 }
 
                 },
