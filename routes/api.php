@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 	Route::get('/simpan/sensor/{id}/{nilaiph}/{nilaimoisture}/{sensor_flowrate}/{sensor_waterpressure}', [DashboardSensorController::class, 'simpanSensor']);
+	Route::get('/simpan/sensor2/{id}/{nilaiph}/{nilaimoisture}/{sensor_flowrate}/{sensor_waterpressure}', [DashboardSensorController::class, 'simpanSensor']);
 	Route::get('/onoff/{id}', [DashboardSensorController::class, 'check']);
