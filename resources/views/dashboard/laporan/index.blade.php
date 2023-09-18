@@ -40,8 +40,8 @@
 																		<th>Waktu-Tanggal</th>
 																		<th>Nilai ph</th>
 																		<th>Nilai kelembaban</th>
-																		<th>Nilai Debit Air</th>
-																		<th>Nilai Tekanan Air</th>
+																		<th>Node</th>
+
 
 
 																</tr>
@@ -53,8 +53,8 @@
 																		<td>{{ $device->created_at }}</td>
 																		<td>{{ $device->sensor_ph }}</td>
 																		<td>{{ $device->sensor_moisture }}</td>
-																		<td>{{ $device->sensor_flowrate }}</td>
-																		<td>{{ $device->sensor_waterpressure }}</td>
+																		<td>{{ $device->device_id }}</td>
+
 
 
 
