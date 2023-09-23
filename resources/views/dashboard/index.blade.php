@@ -137,6 +137,7 @@
 																	<th>#</th>
 																	<th>Waktu-Tanggal</th>
 																	<th>Nilai</th>
+																	<th>Node</th>
 																	<th>Status</th>
 
 
@@ -148,6 +149,7 @@
 																<td>{{ $loop->iteration }}</td>
 																<td>{{ $device->created_at }}</td>
 																<td>{{ $device->sensor_ph}}</td>
+																<td>{{ $device->device_id}}</td>
 																<td>
 																	@if ($device->sensor_ph >= 0 && $device->sensor_ph <= 5.9)
 																			<span class="badge badge-warning">Asam</span>
@@ -200,6 +202,7 @@
 																		<th>#</th>
 																		<th>Waktu-Tanggal</th>
 																		<th>Nilai</th>
+																		<th>Node</th>
 																		<th>Status</th>
 
 
@@ -211,6 +214,7 @@
 																	<td>{{ $loop->iteration }}</td>
 																	<td>{{ $device->created_at }}</td>
 																	<td>{{ $device->sensor_moisture }}</td>
+																	<td>{{ $device->device_id}}</td>
 																	<td>
 																		@if ($device->sensor_moisture >= 0 && $device->sensor_moisture <= 300)
 																				<span class="badge badge-danger">Kering</span>

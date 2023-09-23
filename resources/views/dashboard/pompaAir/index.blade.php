@@ -39,7 +39,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Waktu-Tanggal</th>
-                                        <th>Volume Air(L)</th>
+                                        <th>Debit air</th>
+                                        <th>Tekanan air</th>
 
 
                                     </tr>
@@ -50,7 +51,7 @@
                                         <td>{{ $loop->iteration }}</td>
 																				<td>{{ $device->created_at }}</td>
                                         <td>{{ $device->sensor_flowrate }}</td>
-
+																				<td>{{ $device->sensor_waterpressure }}</td>
 
                                     </tr>
                                     @endforeach

@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
 
-    <title>Ciamis |{{$title}}</title>
+    <title>{{$title}}</title>
 
 </head>
 
