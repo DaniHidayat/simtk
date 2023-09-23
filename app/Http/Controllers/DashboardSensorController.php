@@ -148,9 +148,9 @@ class DashboardSensorController extends Controller
 		// Perform any necessary actions with the data here (e.g., update database
 		// Return a response (if needed)
 		if ($item->status === 'true') {
-			return "ON";
-		} else {
 			return "OFF";
+		} else {
+			return "ON";
 		}
 	}
 
