@@ -216,11 +216,11 @@
 																	<td>{{ $device->sensor_moisture }}</td>
 																	<td>{{ $device->device_id}}</td>
 																	<td>
-																		@if ($device->sensor_moisture >= 0 && $device->sensor_moisture <= 300)
+																		@if ($device->sensor_moisture >= 476 && $device->sensor_moisture <= 1023)
 																				<span class="badge badge-danger">Kering</span>
-																		@elseif ($device->sensor_moisture >= 301 && $device->sensor_moisture <= 600)
+																		@elseif ($device->sensor_moisture >= 340 && $device->sensor_moisture <= 475)
 																				<span class="badge badge-success">Lembab</span>
-																		@elseif ($device->sensor_moisture >= 601 && $device->sensor_moisture >= 900)
+																		@elseif ($device->sensor_moisture >= 150 && $device->sensor_moisture <= 339)
 																				<span class="badge badge-primay">Basah</span>
 
 																		@else
@@ -238,14 +238,14 @@
 												<div class="container mt-5">
 													<div class="row">
 															<div class="col-md-3">
-																	<p><span class="badge badge-danger">0 - 300 Kering</span></p>
+																	<p><span class="badge badge-danger">476 - 1023 Kering</span></p>
 															</div>
 															<div class="col-md-3">
-																	<p><span class="badge badge-success">301 - 600 Lembab</span></p>
+																	<p><span class="badge badge-success"> 340 - 475 Lembab</span></p>
 															</div>
 
 															<div class="col-md-3">
-																	<p><span class="badge badge-primary">601- 900 Basah</span></p>
+																	<p><span class="badge badge-primary">150 - 339 Basah</span></p>
 															</div>
 													</div>
 												</div>
