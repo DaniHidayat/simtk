@@ -54,6 +54,14 @@
 										</p>
 								</a>
 						</li>
+						<li class="nav-item">
+							<a href="/dashboard/saklar" class="nav-link">
+									<i class="nav-icon fas fa-table"></i>
+									<p>
+										Saklar
+									</p>
+							</a>
+					</li>
 
                 <li class="nav-item">
                     <form action="/dashboard/logout" method="POST">

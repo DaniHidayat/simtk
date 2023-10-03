@@ -5,6 +5,7 @@ use App\Http\Controllers\SatisfactionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardLaporanController;
 use App\Http\Controllers\DashboardPompaAirController;
+use App\Http\Controllers\DashboardSaklarController;
 use App\Http\Controllers\DashboardSensorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -71,6 +72,9 @@ Route::post('/dashboard/laporansensor/export_excel', [DashboardLaporanController
 Route::post('/dashboard/laporansensor/export_pdf', [DashboardLaporanController::class, 'export_pdf']);
 Route::get('/dashboard/laporan', [DashboardLaporanController::class, 'index'])
 ->middleware('auth');
+
+//saklar
+Route::get('/dashboard/saklar', [DashboardSaklarController::class, 'index']);
 
 
 Route::post('/save-token', [App\Http\Controllers\WebNotificationController::class, 'saveToken'])->name('save-token');
